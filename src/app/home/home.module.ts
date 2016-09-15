@@ -1,9 +1,10 @@
 import {NgModule} from '@angular/core';
 
 import {HomeComponent} from "./home.component";
+import {WidgetOneModule} from "../widgets/widget-one.module";
 
 @NgModule({
-    imports: [],
+    imports: [WidgetOneModule],
     exports: [HomeComponent],
     declarations: [HomeComponent],
     providers: [],
