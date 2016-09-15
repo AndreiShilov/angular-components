@@ -5,7 +5,8 @@ import {SimpleService} from "../services/services.module";
     selector: 'home',
     template: `<div>home</div>
 <widget-one></widget-one>
-<widget-two></widget-two>
+<widget-two [message]="simpleService.message"></widget-two>
+<widget-two [message]="'Hello'"></widget-two>
 <div>{{simpleService.message}}</div>`
 })
 export class HomeComponent implements OnInit {
@@ -14,5 +15,4 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
     }
-
 }

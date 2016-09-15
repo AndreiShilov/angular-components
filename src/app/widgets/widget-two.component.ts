@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
     selector: 'widget-two',
-    template: `<div > two</div>`
+    template: `<div > two</div><div>{{message}}</div>`
 })
 export class WidgetTwoComponent implements OnInit {
-    constructor() { }
+    @Input() message: string;
 
-    ngOnInit() { }
-    
+    constructor() {
+    }
+
+    ngOnInit() {
+    }
+
 }
