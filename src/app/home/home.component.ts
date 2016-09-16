@@ -4,16 +4,17 @@ import {WidgetThreeComponent} from "../widgets/widget-three.component";
 @Component({
     selector: 'home',
     template: `
-<button (click)="addComponent()">Add component</button>
+<button (click)="moveComponent()">Move component</button>
 <div #container></div>`
 })
 export class HomeComponent {
     @ViewChild('container', {read: ViewContainerRef}) container;
 
     widgetFactory;
+    widgetRef;
 
     constructor(private resolver: ComponentFactoryResolver) {
-     this.widgetFactory = this.resolver.resolveComponentFactory(WidgetThreeComponent)
+        this.widgetFactory = this.resolver.resolveComponentFactory(WidgetThreeComponent)
     }
 
     ngAfterContentInit() {
@@ -25,11 +26,13 @@ export class HomeComponent {
         this.container.createComponent(this.widgetFactory);
         this.container.createComponent(this.widgetFactory);
 
-        const  widgetRef =this.container.createComponent(this.widgetFactory,2);
-        widgetRef.instance.message = "I'm third";
+        this.widgetRef = this.container.createComponent(this.widgetFactory, 2);
+        this.widgetRef.instance.message = "I'm third";
     }
 
-    addComponent(){
-        this.container.createComponent(this.widgetFactory);
+    moveComponent() {
+        const randomIndex = Math.floor(Math.random() * this.container.length);
+        this.container.move(this.widgetRef.hostView, randomIndex);
+        this.container.detach(1);
     }
 }
