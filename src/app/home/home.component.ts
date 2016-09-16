@@ -5,13 +5,17 @@ import {SimpleService} from "../services/services.module";
     selector: 'home',
     template: `<div>home</div>
 <widget-one>
-<widget-two [message]="'Hello'"></widget-two>
+<h2>title</h2>
+<div>Some content</div>
+<div footer>footer</div>
+
 </widget-one>
-<div>{{simpleService.message}}</div>`
+`
 })
 export class HomeComponent implements OnInit {
     constructor(public simpleService: SimpleService) {
     }
+
 
     ngOnInit() {
     }

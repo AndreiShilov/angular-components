@@ -16,7 +16,9 @@ color: green;
     ],
     template: `
 <h2>above</h2>
-<ng-content></ng-content>
+<ng-content select="[footer]"></ng-content>
+<ng-content select="h2"></ng-content>
+<ng-content select="div"></ng-content>
 <h2>below</h2>
 `
 })
