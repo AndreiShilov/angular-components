@@ -15,6 +15,9 @@ export class HomeComponent {
     ngAfterContentInit() {
         console.log(this.container);
         const widgetFactory = this.resolver.resolveComponentFactory(WidgetThreeComponent)
-        this.container.createComponent(widgetFactory);
+
+
+        const  widgetRef =this.container.createComponent(widgetFactory);
+        widgetRef.instance.message = 'Yuoooooooooooooo'
     }
 }
