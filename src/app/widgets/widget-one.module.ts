@@ -16,8 +16,10 @@ import {WidgetThreeComponent} from "./widget-three.component";
         WidgetOneComponent,
         WidgetTwoComponent,
         WidgetThreeComponent],
+    entryComponents:[
+      WidgetThreeComponent
+    ],
     providers: [],
 })
 export class WidgetOneModule {
-
 }

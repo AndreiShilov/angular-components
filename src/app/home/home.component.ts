@@ -1,15 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {SimpleService} from "../services/services.module";
+import {Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver} from '@angular/core';
+import {WidgetThreeComponent} from "../widgets/widget-three.component";
 
 @Component({
     selector: 'home',
-    template: `<div>home</div>
-<widget-three></widget-three>
-`
+    template: `
+<div #container></div>`
 })
-export class HomeComponent implements OnInit {
-    constructor(public simpleService: SimpleService) {
+export class HomeComponent {
+    @ViewChild('container', {read: ViewContainerRef}) container;
+
+    constructor(private resolver: ComponentFactoryResolver) {
     }
-    ngOnInit() {
+
+    ngAfterContentInit() {
+        console.log(this.container);
+        const widgetFactory = this.resolver.resolveComponentFactory(WidgetThreeComponent)
+        this.container.createComponent(widgetFactory);
     }
 }
