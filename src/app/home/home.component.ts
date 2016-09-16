@@ -4,20 +4,32 @@ import {WidgetThreeComponent} from "../widgets/widget-three.component";
 @Component({
     selector: 'home',
     template: `
+<button (click)="addComponent()">Add component</button>
 <div #container></div>`
 })
 export class HomeComponent {
     @ViewChild('container', {read: ViewContainerRef}) container;
 
+    widgetFactory;
+
     constructor(private resolver: ComponentFactoryResolver) {
+     this.widgetFactory = this.resolver.resolveComponentFactory(WidgetThreeComponent)
     }
 
     ngAfterContentInit() {
         console.log(this.container);
-        const widgetFactory = this.resolver.resolveComponentFactory(WidgetThreeComponent)
+        this.container.createComponent(this.widgetFactory);
+        this.container.createComponent(this.widgetFactory);
+        this.container.createComponent(this.widgetFactory);
+        this.container.createComponent(this.widgetFactory);
+        this.container.createComponent(this.widgetFactory);
+        this.container.createComponent(this.widgetFactory);
 
+        const  widgetRef =this.container.createComponent(this.widgetFactory,2);
+        widgetRef.instance.message = "I'm third";
+    }
 
-        const  widgetRef =this.container.createComponent(widgetFactory);
-        widgetRef.instance.message = 'Yuoooooooooooooo'
+    addComponent(){
+        this.container.createComponent(this.widgetFactory);
     }
 }
